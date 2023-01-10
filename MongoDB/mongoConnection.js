@@ -1,5 +1,8 @@
 const mongoose =require('mongoose')
 
+require('dotenv').config()
+
+const MONGO_URL = process.env.MONGO_URL
 
 const mensajeSchema = new mongoose.Schema({
 
@@ -19,7 +22,7 @@ const MensajesDAO = mongoose.model('mensajes', mensajeSchema)
 
 const MongoConnection = async () =>{
     try {
-        const URL = 'mongodb+srv://chat:chat88@cluster0.jgoashy.mongodb.net/chat?retryWrites=true&w=majority'
+        const URL = MONGO_URL
         await mongoose.connect(URL, {
             serverSelectionTimeoutMS: 5000,
         })
